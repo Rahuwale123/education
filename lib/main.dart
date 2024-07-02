@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/pages/splash.dart';
+import 'package:login/pages/videoplay.dart';
 
 void main(){
   runApp(app());
@@ -11,8 +12,8 @@ class app extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'login',
-      home: Splash(),
+      title: 'Education',
+      home: YoutubePlayerScreen(id: '',),
     );
   }
 }

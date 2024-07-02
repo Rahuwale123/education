@@ -14,20 +14,51 @@ final _controller = YoutubePlayerController(params: YoutubePlayerParams(showCont
 @override 
 void initState() { 
 	super.initState(); 
-	_controller.loadVideoById(videoId: widget.id); 
+	_controller.loadVideoById(videoId:'UrsmFxEIp5k'); 
 } 
 
 @override 
 Widget build(BuildContext context) { 
 	return Scaffold( 
-	body: Padding( 
-		padding: const EdgeInsets.all(8.0), 
-		
-		child: YoutubePlayer( 
-			controller: _controller,
-			aspectRatio: 16 / 9,	
-		), 
-	), 
+    appBar: AppBar(),
+	body: SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding( 
+            padding: const EdgeInsets.all(8.0), 
+            
+            child: YoutubePlayer( 
+              controller: _controller,
+              aspectRatio: 16 / 9,	
+            ), 
+          ),
+      
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Container(
+                height: 500,
+                width: double.infinity,
+                child: ListView.builder(itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+  Container(
+    height: 100,
+    width: 150,
+    color: Colors.amber,
+  )
+                      ],
+                    ),
+                  );
+                },),
+              ),
+            )
+        ],
+      ),
+    ), 
+
+
 	); 
 } 
 }

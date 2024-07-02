@@ -10,6 +10,7 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   bool issel = false;
+  String? inte;
   List intrest = [
     ["html", false],
     ["React", false],
@@ -35,7 +36,7 @@ class _OnboardingState extends State<Onboarding> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Home(),
+                      builder: (context) => Home(show: '',),
                     ));
               },
               child: Text("Skip"))
@@ -83,6 +84,7 @@ class _OnboardingState extends State<Onboarding> {
                                     }
                                   },
                                 );
+                                inte=intrest[index][0];
                               });
                             },
                           );
@@ -111,7 +113,7 @@ class _OnboardingState extends State<Onboarding> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Home(),
+                            builder: (context) => Home(show: inte.toString(),),
                           ));
                     },
                     child: Text(
