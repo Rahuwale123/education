@@ -9,9 +9,9 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
-  bool issel = false;
-  String? inte;
-  List intrest = [
+  bool isSelected = false;
+  String? selectedInterest;
+  List interests = [
     ["html", false],
     ["React", false],
     ["Python", false],
@@ -26,20 +26,39 @@ class _OnboardingState extends State<Onboarding> {
     ["Rust", false],
   ];
 
+  void _showSnackbar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text(
+        'You can select only one option',
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+      backgroundColor: Colors.red,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      duration: Duration(seconds: 2),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
           TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(show: '',),
-                    ));
-              },
-              child: Text("Skip"))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(show: '',),
+                ),
+              );
+            },
+            child: Text("Skip"),
+          )
         ],
       ),
       body: Padding(
@@ -55,42 +74,36 @@ class _OnboardingState extends State<Onboarding> {
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
                   ),
                   Text(
-                    "Select your intrest",
+                    "Select your interest",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
-                  SizedBox(
-                    height: 25,
-                  ),
+                  SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Container(
                       height: 250,
                       width: double.infinity,
                       child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
                         itemBuilder: (context, index) {
                           return ChoiceChip(
-                            label: Text(intrest[index][0].toString()),
-                            selected: intrest[index][1],
+                            label: Text(interests[index][0].toString()),
+                            selected: interests[index][1],
                             selectedColor: Colors.green,
                             onSelected: (value) {
                               setState(() {
-                                intrest[index][1] = value;
-                                intrest.forEach(
-                                  (element) {
-                                    if (element[1] == true) {
-                                      issel = true;
-                                    }
-                                  },
-                                );
-                                inte=intrest[index][0];
+                                if (!isSelected || interests[index][1]) {
+                                  interests[index][1] = value;
+                                  isSelected = value;
+                                  selectedInterest = value ? interests[index][0] : null;
+                                } else {
+                                  _showSnackbar(context);
+                                }
                               });
                             },
                           );
                         },
-                        itemCount: intrest.length,
-                        shrinkWrap: false,
+                        itemCount: interests.length,
                       ),
                     ),
                   ),
@@ -98,30 +111,40 @@ class _OnboardingState extends State<Onboarding> {
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
               child: Container(
                 height: 60,
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                            issel ? Colors.green : Colors.grey.shade400),
-                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)))),
-                    onPressed: () {
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      isSelected ? Colors.green : Colors.grey.shade400,
+                    ),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (isSelected) {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(show: inte.toString(),),
-                          ));
-                    },
-                    child: Text(
-                      "Continue",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    )),
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Home(show: selectedInterest.toString()),
+                        ),
+                      );
+                    } else {
+                      _showSnackbar(context);
+                    }
+                  },
+                  child: Text(
+                    "Continue",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
