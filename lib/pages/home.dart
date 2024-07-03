@@ -2,24 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:login/data/courses.dart';
 import 'package:login/pages/videoplay.dart';
 import 'search.dart';
-
 class Home extends StatefulWidget {
   final String show;
   const Home({Key? key, required this.show}) : super(key: key);
-
   @override
   State<Home> createState() => _HomeState();
 }
-
 class _HomeState extends State<Home> {
   List<dynamic> filteredCourses =[];
-
   @override
   void initState() {
     super.initState();
     filterCourses();
   }
-
   void filterCourses() {
     setState(() {
       switch (widget.show.toLowerCase()) {
@@ -154,7 +149,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.40,
+                height: MediaQuery.of(context).size.height * 0.45,
                 width: double.infinity,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -249,7 +244,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.40,
+                height: MediaQuery.of(context).size.height * 0.45,
                 width: double.infinity,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,

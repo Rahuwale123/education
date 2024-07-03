@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:login/pages/home.dart';
-
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
-
   @override
   State<Onboarding> createState() => _OnboardingState();
 }
-
 class _OnboardingState extends State<Onboarding> {
   bool isSelected = false;
   String? selectedInterest;
@@ -25,7 +22,6 @@ class _OnboardingState extends State<Onboarding> {
     ["Ruby", false],
     ["Rust", false],
   ];
-
   void _showSnackbar(BuildContext context) {
     final snackBar = SnackBar(
       content: Text(
@@ -39,10 +35,8 @@ class _OnboardingState extends State<Onboarding> {
       ),
       duration: Duration(seconds: 2),
     );
-
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +51,7 @@ class _OnboardingState extends State<Onboarding> {
                 ),
               );
             },
-            child: Text("Skip"),
+            child: Text("Skip",style:TextStyle(color:Colors.black,fontSize: 20,fontWeight: FontWeight.w500)),
           )
         ],
       ),
@@ -103,7 +97,7 @@ class _OnboardingState extends State<Onboarding> {
                             },
                           );
                         },
-                        itemCount: interests.length,
+                       itemCount: interests.length,
                       ),
                     ),
                   ),
@@ -117,10 +111,10 @@ class _OnboardingState extends State<Onboarding> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(
                       isSelected ? Colors.green : Colors.grey.shade400,
                     ),
-                    shape: MaterialStateProperty.all(
+                    shape: WidgetStatePropertyAll(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),

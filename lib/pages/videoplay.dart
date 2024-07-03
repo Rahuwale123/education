@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:login/pages/home.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:login/data/courses.dart';
-
 class YoutubePlayerScreen extends StatefulWidget {
   final String id;
   final String userInterest;
   final VoidCallback? onClose;
-
   const YoutubePlayerScreen({
     Key? key,
     required this.id,
     required this.userInterest,
     this.onClose,
   }) : super(key: key);
-
   @override
   State<YoutubePlayerScreen> createState() => _YoutubePlayerScreenState();
 }
-
 class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
   late YoutubePlayerController _controller;
   List<dynamic> filteredCourses = [];
-
   @override
   void initState() {
     super.initState();
@@ -37,7 +33,6 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
     _controller.loadVideoById(videoId: widget.id);
     filterCourses();
   }
-
   void filterCourses() {
     switch (widget.userInterest.toLowerCase()) {
       case 'html':
@@ -82,7 +77,6 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
     filteredCourses.removeWhere((course) => course[0] == widget.id);
     setState(() {});
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +88,7 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Home(show: widget.userInterest),));
           },
         ),
       ),
@@ -145,7 +139,6 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
                       ),
                       onTap: () {
                         final selectedVideo = filteredCourses[index];
-                       
                         _controller.loadVideoById(videoId: selectedVideo[0]);
                         setState(() {});
                       },
@@ -158,9 +151,8 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
           ),
         ],
       ),
-    );  
+    );
   }
-
   @override
   void dispose() {
     _controller.close();
