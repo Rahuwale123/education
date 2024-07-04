@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login/pages/splash.dart';
-import 'package:login/pages/videoplay.dart';
 void main(){
   runApp(app());
 }

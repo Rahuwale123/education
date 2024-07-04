@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/data/courses.dart';
+import 'package:login/pages/videoplay.dart';
 
 import 'explore.dart';
 
@@ -74,8 +75,8 @@ class _SearchState extends State<Search> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => YoutubePlaylistScreen(
-                          courseId: filteredCourses[index][0], userInterest: '', 
+                        builder: (context) => YoutubePlayerScreen(
+                         id:filteredCourses[index][0], userInterest: '', 
                         ),
                       ),
                     );

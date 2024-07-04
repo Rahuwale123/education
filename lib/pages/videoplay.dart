@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login/pages/home.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:login/data/courses.dart';
+
 class YoutubePlayerScreen extends StatefulWidget {
   final String id;
   final String userInterest;
@@ -15,6 +16,7 @@ class YoutubePlayerScreen extends StatefulWidget {
   @override
   State<YoutubePlayerScreen> createState() => _YoutubePlayerScreenState();
 }
+
 class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
   late YoutubePlayerController _controller;
   List<dynamic> filteredCourses = [];
@@ -33,6 +35,7 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
     _controller.loadVideoById(videoId: widget.id);
     filterCourses();
   }
+
   void filterCourses() {
     switch (widget.userInterest.toLowerCase()) {
       case 'html':
@@ -74,9 +77,9 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
       default:
         filteredCourses = python;
     }
-    filteredCourses.removeWhere((course) => course[0] == widget.id);
     setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +91,12 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context,MaterialPageRoute(builder: (context) => Home(show: widget.userInterest),));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(show: widget.userInterest),
+                ));
+            _controller.stopVideo();
           },
         ),
       ),
@@ -101,7 +109,20 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
               aspectRatio: 16 / 9,
             ),
           ),
-          Expanded(
+          _suggestions(),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    _controller.stopVideo();
+    super.dispose();
+  }
+  _suggestions(){
+    return Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: ListView.builder(
@@ -148,14 +169,6 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
                 itemCount: filteredCourses.length,
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-  @override
-  void dispose() {
-    _controller.close();
-    super.dispose();
+          );
   }
 }
