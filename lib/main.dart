@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/pages/profile.dart';
 import 'package:login/pages/splash.dart';
 void main(){
   runApp(app());

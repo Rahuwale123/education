@@ -3,7 +3,6 @@ import 'package:login/pages/onboarding.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
-
   @override
   State<Splash> createState() => _SplashState();
 }
@@ -11,7 +10,6 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -36,7 +34,9 @@ class _SplashState extends State<Splash> {
                     "Education",
                     style: TextStyle(fontSize: 50, fontWeight: FontWeight.w900),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     "Explore courses & educational resources",
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
@@ -45,20 +45,27 @@ class _SplashState extends State<Splash> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 20),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
               child: Container(
                 height: 60,
                 width: double.infinity,
                 child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.green),
+                        backgroundColor: WidgetStatePropertyAll(Colors.green),
                         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                          
                             borderRadius: BorderRadius.circular(12)))),
                     onPressed: () {
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => Onboarding(),));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Onboarding(),
+                          ));
                     },
-                    child: Text("Get Started",style: TextStyle(color: Colors.white,fontSize: 20),)),
+                    child: Text(
+                      "Get Started",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )),
               ),
             )
           ],

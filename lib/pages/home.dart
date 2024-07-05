@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login/data/courses.dart';
+import 'package:login/pages/chat.dart';
+import 'package:login/pages/explore.dart';
+import 'package:login/pages/profile.dart';
 import 'package:login/pages/videoplay.dart';
 import 'search.dart';
 
@@ -84,8 +87,95 @@ class _HomeState extends State<Home> {
       ),
       drawer: Drawer(
         child: ListView(
-          children: [],
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: Container(
+                height: 100,
+                width: 100,
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.amber),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text(
+                "Home",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.search),
+              title: Text(
+                "Search",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Explore(show: widget.show),
+                    ));
+              },
+              child: ListTile(
+                leading: Icon(Icons.explore),
+                title: Text(
+                  "Explore",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profile()));
+              },
+              child: ListTile(
+                leading: Icon(Icons.person_2_rounded),
+                title: Text(
+                  "profile",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                ),
+              ),
+            ),
+          ],
         ),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            "Solve doubts",
+            style: TextStyle(
+                color: Colors.deepPurple, fontWeight: FontWeight.w700),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Chat(),
+                  ));
+            },
+            child: Container(
+              height: 80,
+              width: 80,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/edu.jpeg'),
+                      fit: BoxFit.cover)),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -191,7 +281,13 @@ class _HomeState extends State<Home> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Explore(show: widget.show),
+                        ));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueGrey[800],
                     shape: RoundedRectangleBorder(

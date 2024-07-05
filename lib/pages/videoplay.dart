@@ -3,6 +3,8 @@ import 'package:login/pages/home.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:login/data/courses.dart';
 
+import 'chat.dart';
+
 class YoutubePlayerScreen extends StatefulWidget {
   final String id;
   final String userInterest;
@@ -83,6 +85,25 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text("Solve doubts",style: TextStyle(color: Colors.deepPurple,fontWeight: FontWeight.w700),),
+          InkWell(
+            onTap: () {
+              Navigator.push(context,MaterialPageRoute(builder: (context) => Chat(),));
+            },
+            child: Container(
+              height:80,
+              width: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(image: AssetImage('assets/images/edu.jpeg'),fit: BoxFit.cover)
+              ),
+            ),
+          ),
+        ],
+      ),
       appBar: AppBar(
         title: Text(
           "Back",

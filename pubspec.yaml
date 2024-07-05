@@ -40,6 +40,10 @@ dependencies:
   pod_player: ^0.2.2
   water_drop_nav_bar: ^2.2.1
   flutter_typeahead: ^5.2.0
+  google_generative_ai: ^0.4.3
+  speech_to_text: ^6.6.2
+  image_picker: ^1.1.2
+  dropdown_search: ^5.0.6
 
 dev_dependencies:
   flutter_test:
