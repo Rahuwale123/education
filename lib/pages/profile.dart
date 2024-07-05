@@ -177,7 +177,7 @@ class _ProfileState extends State<Profile> {
             const SizedBox(height: 15),
             _buildInfoText(title: 'Gender', info: _gender),
             const SizedBox(height: 15),
-            _buildInfoText(title: 'Language', info: _language),
+            _buildInfoText(title: 'Coding Language', info: _language),
             const SizedBox(height: 25),
             Container(
               height: 80,

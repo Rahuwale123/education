@@ -95,7 +95,9 @@ bool isListening=false;
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
+            child: messages.length<1?Center(
+              child: Text("My self Edu, Your learning partner",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+            ):ListView.builder(
               reverse: true,
               itemCount: messages.length,
               itemBuilder: (context, index) {

@@ -38,7 +38,7 @@ class _SplashState extends State<Splash> {
                     height: 10,
                   ),
                   Text(
-                    "Explore courses & educational resources",
+                    "Experience Ai based Education",
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
                   ),
                 ],
